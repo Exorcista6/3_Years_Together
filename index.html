@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Años con Carla - Nuestra Historia</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Partículas de fondo -->
+    <div id="particles-container"></div>
+
+    <!-- Música de fondo -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/musica-fondo.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Control de música -->
+    <div id="music-control" class="hidden">
+        <button id="music-toggle" aria-label="Toggle Music">
+            <span class="icon">🎵</span>
+        </button>
+    </div>
+
+    <!-- Barra de progreso -->
+    <div id="progress-bar-container" class="hidden">
+        <div id="progress-bar"></div>
+    </div>
+
+    <main id="app">
+        <!-- PANTALLA 1: BIENVENIDA -->
+        <section id="screen-1" class="screen active">
+            <div class="content glass">
+                <h1 class="title">Carla, antes de continuar con esta noche...</h1>
+                <p class="subtitle">Quiero que recorras conmigo un pedacito de estos 3 años.</p>
+                <button class="btn-primary" onclick="nextScreen(2, true)">Empezar nuestro viaje</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 2: INTRODUCCIÓN -->
+        <section id="screen-2" class="screen">
+            <div class="content glass">
+                <p class="text-large">“Hay historias que no se planean, simplemente empiezan… y sin darnos cuenta, se vuelven nuestro lugar favorito.”</p>
+                <p class="subtitle">Esta es una pequeña parte de la nuestra.</p>
+                <button class="btn-primary" onclick="nextScreen(3)">Continuar</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 3: PRIMER RECUERDO -->
+        <section id="screen-3" class="screen">
+            <div class="content glass">
+                <h2 class="title-small">Año 1: cuando empezamos a descubrirnos</h2>
+                <p>En nuestro primer año aprendí que estar contigo hacía que los días simples se sintieran especiales.</p>
+                
+                <div class="gallery">
+                    <div class="photo-placeholder">
+                        <img src="assets/fotos/foto-01.jpg" alt="Recuerdo 1" onerror="this.parentElement.classList.add('no-img')">
+                        <span class="placeholder-text">Aquí irá uno de nuestros recuerdos</span>
+                    </div>
+                    <div class="photo-placeholder">
+                        <img src="assets/fotos/foto-02.jpg" alt="Recuerdo 2" onerror="this.parentElement.classList.add('no-img')">
+                        <span class="placeholder-text">Aquí irá uno de nuestros recuerdos</span>
+                    </div>
+                    <div class="photo-placeholder">
+                        <img src="assets/fotos/foto-03.jpg" alt="Recuerdo 3" onerror="this.parentElement.classList.add('no-img')">
+                        <span class="placeholder-text">Aquí irá uno de nuestros recuerdos</span>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="nextScreen(4)">Seguir</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 4: MENSAJE EMOCIONAL -->
+        <section id="screen-4" class="screen">
+            <div class="content glass">
+                <p class="text-large">“No todo fue perfecto, pero todo lo vivido nos fue enseñando algo…”</p>
+                <p class="subtitle">Que amar también es quedarse, entenderse y volver a elegirse.</p>
+                <button class="btn-primary" onclick="nextScreen(5)">Continuar</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 5: MINI DINÁMICA ROMÁNTICA -->
+        <section id="screen-5" class="screen">
+            <div class="content glass">
+                <h2 class="title-small">Toca los 3 corazones para desbloquear el siguiente recuerdo</h2>
+                
+                <div class="hearts-container">
+                    <div class="heart-item" onclick="touchHeart(1, this)">
+                        <div class="heart">❤️</div>
+                        <div class="heart-phrase">Gracias por quedarte.</div>
+                    </div>
+                    <div class="heart-item" onclick="touchHeart(2, this)">
+                        <div class="heart">❤️</div>
+                        <div class="heart-phrase">Gracias por creer en mí.</div>
+                    </div>
+                    <div class="heart-item" onclick="touchHeart(3, this)">
+                        <div class="heart">❤️</div>
+                        <div class="heart-phrase">Gracias por ser mi Solsito.</div>
+                    </div>
+                </div>
+
+                <button id="btn-unlocked-memory" class="btn-primary hidden" onclick="nextScreen(6)">Recuerdo desbloqueado</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 6: SEGUNDO RECUERDO -->
+        <section id="screen-6" class="screen">
+            <div class="content glass">
+                <h2 class="title-small">Año 2: cuando aprendimos a elegirnos</h2>
+                <p>Este año me enseñó que amar no es solo vivir momentos bonitos, también es cuidarnos, entendernos y seguir eligiéndonos.</p>
+                
+                <div class="gallery">
+                    <div class="photo-placeholder">
+                        <img src="assets/fotos/foto-04.jpg" alt="Recuerdo 4" onerror="this.parentElement.classList.add('no-img')">
+                        <span class="placeholder-text">Aquí irá uno de nuestros recuerdos</span>
+                    </div>
+                    <div class="photo-placeholder">
+                        <img src="assets/fotos/foto-05.jpg" alt="Recuerdo 5" onerror="this.parentElement.classList.add('no-img')">
+                        <span class="placeholder-text">Aquí irá uno de nuestros recuerdos</span>
+                    </div>
+                    <div class="photo-placeholder">
+                        <img src="assets/fotos/foto-06.jpg" alt="Recuerdo 6" onerror="this.parentElement.classList.add('no-img')">
+                        <span class="placeholder-text">Aquí irá uno de nuestros recuerdos</span>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="nextScreen(7)">Continuar</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 7: TERCER RECUERDO -->
+        <section id="screen-7" class="screen">
+            <div class="content glass">
+                <h2 class="title-small">Año 3: cuando entendí que quiero construir contigo</h2>
+                <p>Hoy no solo miro lo que hemos vivido. También miro lo que quiero seguir construyendo a tu lado.</p>
+                
+                <div class="gallery">
+                    <div class="photo-placeholder">
+                        <img src="assets/fotos/foto-07.jpg" alt="Recuerdo 7" onerror="this.parentElement.classList.add('no-img')">
+                        <span class="placeholder-text">Aquí irá uno de nuestros recuerdos</span>
+                    </div>
+                    <div class="photo-placeholder">
+                        <img src="assets/fotos/foto-08.jpg" alt="Recuerdo 8" onerror="this.parentElement.classList.add('no-img')">
+                        <span class="placeholder-text">Aquí irá uno de nuestros recuerdos</span>
+                    </div>
+                    <div class="photo-placeholder">
+                        <img src="assets/fotos/foto-09.jpg" alt="Recuerdo 9" onerror="this.parentElement.classList.add('no-img')">
+                        <span class="placeholder-text">Aquí irá uno de nuestros recuerdos</span>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="nextScreen(8)">Ir a la llave final</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 8: INTRODUCCIÓN AL QUIZ -->
+        <section id="screen-8" class="screen">
+            <div class="content glass">
+                <h2 class="title-small">Antes del último recuerdo…</h2>
+                <p>Hay una pequeña llave que solo tú puedes abrir.</p>
+                <p class="subtitle">No es un examen. Es una forma de recordar cuánto nos conocemos, cuánto hemos vivido y cuántas partes de mí también viven contigo.</p>
+                <button class="btn-primary" onclick="nextScreen(9)">Empezar la llave</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 9: QUIZ FINAL -->
+        <section id="screen-9" class="screen">
+            <div class="content glass">
+                <div class="quiz-header">
+                    <span id="quiz-progress">Llave 1/6</span>
+                    <div class="lock-icon" id="lock-icon">🔒</div>
+                </div>
+                
+                <div id="quiz-container">
+                    <!-- Las preguntas se cargarán dinámicamente desde JS -->
+                </div>
+
+                <div id="quiz-feedback" class="feedback hidden"></div>
+                
+                <button id="btn-quiz-next" class="btn-primary hidden">Siguiente llave</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 10: DESBLOQUEO FINAL -->
+        <section id="screen-10" class="screen">
+            <div class="content glass">
+                <div class="unlocked-animation">🔓✨</div>
+                <h2 class="title-small">Has desbloqueado el último recuerdo.</h2>
+                <p>No era solo un juego. Era una forma de recordarte que tú conoces partes de mí que se volvieron hogar contigo.</p>
+                <p class="subtitle">Cada respuesta abrió un pedacito más de esta historia.</p>
+                <button class="btn-primary" onclick="nextScreen(11)">Continuar</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 11: PREPARACIÓN PARA EL VIDEO -->
+        <section id="screen-11" class="screen">
+            <div class="content glass">
+                <h2 class="title-small">Antes de darle play…</h2>
+                <div class="headphones-animation">🎧💖</div>
+                <p class="text-large">Ahora colócate los audífonos.</p>
+                <p class="subtitle">Este video tiene mi voz, mis recuerdos y algo que quiero decirte desde el corazón.</p>
+                <button class="btn-primary" onclick="nextScreen(12)">Ya estoy lista</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 12: VIDEO FINAL -->
+        <section id="screen-12" class="screen">
+            <div class="content glass video-content">
+                <h2 class="title-small">Nuestro Recuerdo Final</h2>
+                
+                <div class="video-wrapper">
+                    <video id="final-video" controls poster="assets/fotos/foto-09.jpg">
+                        <source src="assets/video/video-final.mp4" type="video/mp4">
+                        Tu navegador no soporta el video.
+                    </video>
+                    <!-- Alternativa YouTube comentada como solicitado -->
+                    <!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/ID_DE_TU_VIDEO" frameborder="0" allowfullscreen></iframe> -->
+                </div>
+
+                <p class="video-footer">“Quiero verlo contigo, porque este momento también es parte de nuestra historia.”</p>
+                
+                <button class="btn-primary" onclick="nextScreen(13)">Continuar</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 13: MENSAJE FINAL -->
+        <section id="screen-13" class="screen">
+            <div class="content glass">
+                <p class="text-large">Gracias por estos 3 años, Carla. Gracias por ser mi amor, mi calma y mi Solsito. Esta noche no termina aquí… todavía tengo algo más para ti.</p>
+                <button class="btn-primary" onclick="finishJourney()">Cerrar esta parte de nuestra historia</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
