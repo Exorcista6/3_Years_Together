@@ -405,7 +405,37 @@ video {
     transition: width 0.5s ease;
     box-shadow: 0 0 10px var(--accent-gold);
 }
+.date-input {
+    width: 100%;
+    max-width: 280px;
+    margin: 10px auto 12px;
+    display: block;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--accent-champagne);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    outline: none;
+}
 
+.date-input:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 18px rgba(212, 175, 55, 0.25);
+}
+
+.date-error {
+    display: none;
+    margin: 10px 0 12px;
+    color: #ffb3b3;
+    font-size: 0.9rem;
+}
+
+.date-error.show {
+    display: block;
+}
 /* Utilidades */
 .hidden {
     display: none !important;
