@@ -32,8 +32,36 @@
     </div>
 
     <main id="app">
+        <!-- PANTALLA 0: CANDADO POR FECHA -->
+<section id="screen-lock" class="screen active">
+    <div class="content glass">
+        <h1 class="title">Antes de empezar...</h1>
+
+        <p class="subtitle">
+            Hay recuerdos que no se abren con cualquier clave.
+        </p>
+
+        <p class="subtitle">
+            Coloca la fecha en la que empezó nuestra historia ❤️
+        </p>
+
+        <input 
+            type="date" 
+            id="anniversary-date" 
+            class="date-input"
+        >
+
+        <p id="date-error" class="date-error">
+            Esa no es nuestra fecha, mi amor. Intenta otra vez ❤️
+        </p>
+
+        <button class="btn-primary" onclick="unlockByDate()">
+            Desbloquear nuestra historia
+        </button>
+    </div>
+</section>
         <!-- PANTALLA 1: BIENVENIDA -->
-        <section id="screen-1" class="screen active">
+        <section id="screen-1" class="screen">
             <div class="content glass">
                 <h1 class="title">Carla, antes de continuar con esta noche...</h1>
                 <p class="subtitle">Quiero que recorras conmigo un pedacito de estos 3 años.</p>
