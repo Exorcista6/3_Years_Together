@@ -127,6 +127,26 @@ function updateProgressBar() {
     progressBar.style.width = `${progress}%`;
 }
 
+function unlockByDate() {
+    const selectedDate = document.getElementById('anniversary-date').value;
+    const error = document.getElementById('date-error');
+
+    // El input type="date" usa formato YYYY-MM-DD
+    const correctDate = '2023-06-27';
+
+    if (selectedDate === correctDate) {
+        error.classList.remove('show');
+
+        document.getElementById('screen-lock').classList.remove('active');
+        document.getElementById('screen-1').classList.add('active');
+
+        currentScreen = 1;
+        updateProgressBar();
+    } else {
+        error.classList.add('show');
+    }
+}
+
 // CONTROL DE MÚSICA
 function playMusic() {
     bgMusic.play().catch(e => console.log("Auto-play bloqueado por el navegador"));
