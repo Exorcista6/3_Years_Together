@@ -1,7 +1,7 @@
 // CONFIGURACIÓN DEL QUIZ
 const quizQuestions = [
     {
-        question: "¿Cuál es mi fecha de nacimiento?",
+        question: "¿Cuál es mi fecha de nacimiento? Ojito",
         type: "multiple",
         options: [
             "13 de noviembre de 1999",
@@ -11,7 +11,7 @@ const quizQuestions = [
         ],
         correct: "13 de noviembre de 1999",
         successMsg: "Correcto, mi amor. Esa fecha inició mi historia, pero tú hiciste que muchas partes de ella tuvieran más sentido.",
-        errorMsg: "Casi, mi amor… intenta una vez más ❤️"
+        errorMsg: "Ojito, corrige fast. ❤️"
     },
     {
         question: "¿Cómo se llama el parque donde te propuse ser mi enamorada?",
@@ -25,13 +25,14 @@ const quizQuestions = [
         type: "multiple",
         options: [
             "Alianza Lima",
-            "Universitario",
+            "🐔",
             "Sporting Cristal",
-            "Melgar"
+            "Melgar",
+            "Union Civil"
         ],
         correct: "Alianza Lima",
-        successMsg: "Correcto. Y aunque mi corazón tiene equipo, tú tienes una parte mucho más grande de él.",
-        errorMsg: "Casi, mi amor… intenta una vez más ❤️"
+        successMsg: "Correcto. Y aunque mi corazón tiene equipo, tú también estás dentro de mi cora 🫶.",
+        errorMsg: "AAAAEEEEEEAAAA ❤️"
     },
     {
         question: "¿Cuál es la marca de moto que más me gustaría comprar próximamente?",
@@ -40,30 +41,32 @@ const quizQuestions = [
             "Royal Enfield",
             "Honda",
             "Yamaha",
-            "Suzuki"
+            "Suzuki",
+            "A burrito"
         ],
         correct: "Royal Enfield",
         successMsg: "Correcto. Tú conoces hasta esos sueños que todavía estoy construyendo.",
-        errorMsg: "Casi, mi amor… esa no era. Intenta otra vez ❤️"
+        errorMsg: "AAAAEEEEEEAAAA X2 ❤️"
     },
     {
-        question: "¿Cuál fue nuestro primer viaje juntos?",
+        question: "¿Cuál fue nuestro primer viaje juntos? En Moto OJO AL PIOJO",
         type: "multiple",
         options: [
+            "Chosica",
             "Paracas",
             "Oxapampa",
             "Ilo"
         ],
-        correct: "Paracas",
-        successMsg: "Correcto. Ese viaje fue uno de esos recuerdos que se quedan guardados para siempre.",
-        errorMsg: "Casi, mi amor… piensa en nuestro primer viaje juntos ❤️"
+        correct: "Chosica",
+        successMsg: "Correcto. Ese viaje fue uno de los primeros, con Agonía y en fiestas patrias con mi banderita. c:",
+        errorMsg: "Refresh of the memory ❤️"
     },
     {
-        question: "Escribe una banda que sabes que es de mis favoritas",
+        question: "Escribe una banda que sabes que es de mi favorita Nro 1",
         type: "text",
         correct: ["slipknot"],
-        successMsg: "Correcto. Me encanta que conozcas incluso esas partes de mí que hablan con música.",
-        errorMsg: "Casi, mi amor… piensa en una banda que sabes que me representa mucho ❤️"
+        successMsg: "Correcto. Lánzame tu gaaa!.",
+        errorMsg: "Casi, piensa en una banda que sabes que me representa mucho ❤️"
     }
 ];
 
@@ -192,13 +195,81 @@ function createParticles() {
 }
 
 // DINÁMICA DE CORAZONES (Pantalla 5)
+const heartMessages = {
+    1: "Cada viaje contigo se volvió único.",
+    2: "Gracias por creer en mí.",
+    3: "Gracias por ese gran apoyo para mi primer concierto 2024."
+};
+
 function touchHeart(id, element) {
     touchedHearts.add(id);
     element.classList.add('active');
 
+    const messageBox = document.getElementById('heart-message');
+    messageBox.innerText = heartMessages[id];
+    messageBox.classList.remove('hidden');
+
+    messageBox.classList.remove('heart-pop');
+    void messageBox.offsetWidth;
+    messageBox.classList.add('heart-pop');
+
     if (touchedHearts.size === 3) {
         document.getElementById('btn-unlocked-memory').classList.remove('hidden');
     }
+}
+
+// LLAVE SEMIFINAL CON FOTO
+const correctMemoryPlace = "Magdalena"; // Cambia esta respuesta cuando elijas la foto
+
+function goToMemoryQuestion() {
+    const currentScreenEl = document.getElementById(`screen-${currentScreen}`);
+    const memoryScreen = document.getElementById('screen-7-1');
+
+    if (!currentScreenEl || !memoryScreen) return;
+
+    currentScreenEl.classList.remove('active');
+
+    setTimeout(() => {
+        memoryScreen.classList.add('active');
+        currentScreen = 7.1;
+        updateProgressBar();
+    }, 800);
+}
+
+function checkMemoryPlace(selectedPlace) {
+    const feedback = document.getElementById('memory-feedback');
+    const btnNext = document.getElementById('btn-memory-next');
+
+    if (selectedPlace === correctMemoryPlace) {
+        feedback.innerText = "Correcto, mi Solsito. Ese recuerdo también tenía un pedacito de nuestra historia ❤️";
+        feedback.className = "feedback correct";
+        feedback.classList.remove('hidden');
+
+        btnNext.classList.remove('hidden');
+
+        document.querySelectorAll('.memory-options .quiz-option').forEach(btn => {
+            btn.disabled = true;
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.75';
+        });
+    } else {
+        feedback.innerText = "Casi, mira bien la foto, o si quieres yo te resuelvo, tu papi ❤️";
+        feedback.className = "feedback incorrect";
+        feedback.classList.remove('hidden');
+    }
+}
+
+function goFromMemoryToQuizIntro() {
+    const memoryScreen = document.getElementById('screen-7-1');
+    const quizIntroScreen = document.getElementById('screen-8');
+
+    memoryScreen.classList.remove('active');
+
+    setTimeout(() => {
+        quizIntroScreen.classList.add('active');
+        currentScreen = 8;
+        updateProgressBar();
+    }, 800);
 }
 
 // LÓGICA DEL QUIZ (Pantalla 9)
@@ -284,9 +355,10 @@ function finishJourney() {
     const app = document.getElementById('app');
     app.innerHTML = `
         <div class="content glass">
-            <h1 class="title">Te amo, Carla.</h1>
-            <p class="subtitle">Gracias por ser parte de mi vida.</p>
-            <p>27 de Junio de 2026</p>
+        <h1 class="title">Te amo, Solsito.</h1>
+        <p class="subtitle">Gracias por ser parte de mi vida.</p>
+        <p>27 de Junio de 2026</p>
+        <p class="credits">© By: Ismael Lecarnaque Moreno - Exorcista6</p>
         </div>
     `;
 }
