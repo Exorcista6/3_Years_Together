@@ -117,27 +117,41 @@
         </section>
 
         <!-- PANTALLA 5: MINI DINÁMICA ROMÁNTICA -->
-        <section id="screen-5" class="screen">
+<!-- PANTALLA 5: MINI DINÁMICA ROMÁNTICA -->
+    <section id="screen-5" class="screen">
+        <div class="content glass hearts-card">
+            <h2 class="title-small">Tres corazones, tres recuerdos</h2>
+
+            <p class="subtitle">
+                Toca cada corazón para desbloquear un pedacito de lo que vivimos.
+            </p>
+
             <div class="hearts-container">
                 <div class="heart-item" onclick="touchHeart(1, this)">
                     <div class="heart">❤️</div>
+                    <span class="heart-number">1</span>
                 </div>
 
                 <div class="heart-item" onclick="touchHeart(2, this)">
                     <div class="heart">❤️</div>
+                    <span class="heart-number">2</span>
                 </div>
 
                 <div class="heart-item" onclick="touchHeart(3, this)">
                     <div class="heart">❤️</div>
+                    <span class="heart-number">3</span>
                 </div>
             </div>
 
-        <div id="heart-message" class="heart-message hidden"></div>
+            <div id="heart-message" class="heart-message hidden">
+                Toca un corazón para revelar un recuerdo.
+            </div>
 
-        <button id="btn-unlocked-memory" class="btn-primary hidden" onclick="nextScreen(6)">
-            Recuerdo unlocked y la queso ❤️
-</button>
-        </section>
+            <button id="btn-unlocked-memory" class="btn-primary hidden" onclick="nextScreen(6)">
+                Recuerdo unlocked y la queso ❤️
+            </button>
+        </div>
+    </section>
 
         <!-- PANTALLA 6: SEGUNDO RECUERDO -->
         <section id="screen-6" class="screen">
